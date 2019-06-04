@@ -16,7 +16,7 @@
 <project>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>com.amazon.ion</groupId>
+  <groupId>org.jetbrains.intellij.deps</groupId>
   <artifactId>ion-java</artifactId>
   <version>1.5.0-SNAPSHOT</version>
   <packaging>bundle</packaging>
