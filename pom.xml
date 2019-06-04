@@ -51,13 +51,9 @@
 
   <!-- http://central.sonatype.org/pages/ossrh-guide.html -->
   <distributionManagement>
-    <snapshotRepository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/content/repositories/snapshots</url>
-    </snapshotRepository>
     <repository>
-      <id>ossrh</id>
-      <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+      <id>bintray-jetbrains-intellij-third-party-dependencies</id>
+      <url>https://api.bintray.com/maven/jetbrains/intellij-third-party-dependencies/ion-java/;publish=1</url>
     </repository>
   </distributionManagement>
 
