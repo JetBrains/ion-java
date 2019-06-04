@@ -330,6 +330,7 @@
             <version>1.6.3</version>
             <extensions>true</extensions>
             <configuration>
+              <skip>true</skip>
               <serverId>ossrh</serverId>
               <nexusUrl>https://oss.sonatype.org/</nexusUrl>
               <autoReleaseAfterClose>true</autoReleaseAfterClose>
