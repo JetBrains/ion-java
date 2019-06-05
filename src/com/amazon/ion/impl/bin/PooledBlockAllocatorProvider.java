@@ -25,14 +25,14 @@ import java.util.concurrent.ConcurrentMap;
  * <p>
  * This implementation is thread-safe.
  */
-/*package*/ final class PooledBlockAllocatorProvider extends BlockAllocatorProvider
+public final class PooledBlockAllocatorProvider extends BlockAllocatorProvider
 {
     /**
      * A {@link BlockAllocator} of for a particular size that has a single thread-safe free list.
      * <p>
      * This implementation is thread-safe.
      */
-    private final class PooledBlockAllocator extends BlockAllocator
+    private static final class PooledBlockAllocator extends BlockAllocator
     {
         private final int blockSize;
         private final ConcurrentLinkedQueue<Block> freeBlocks;

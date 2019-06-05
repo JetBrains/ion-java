@@ -24,14 +24,14 @@ import java.io.Closeable;
  * <p>
  * This class and its implementations are <b>not</b> thread-safe.
  */
-/*package*/ abstract class Block implements Closeable
+public abstract class Block implements Closeable
 {
     /** The data backing this block. */
     public final byte[] data;
     /** The first index for which data has not been written to or read from. */
     public int limit;
 
-    /*package*/ Block(final byte[] data)
+    public Block(final byte[] data)
     {
         this.data = data;
         this.limit = 0;

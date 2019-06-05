@@ -22,9 +22,9 @@ package com.amazon.ion.impl.bin;
  * <p>
  * Implementations must be thread-safe.
  */
-/*package*/ abstract class BlockAllocatorProvider
+public abstract class BlockAllocatorProvider
 {
-    /*package*/ BlockAllocatorProvider() {}
+    public BlockAllocatorProvider() {}
 
     /**
      * Returns a {@link BlockAllocator} that vends blocks of the given size.

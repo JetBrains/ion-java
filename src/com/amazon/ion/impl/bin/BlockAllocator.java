@@ -25,9 +25,9 @@ import java.io.Closeable;
  * <p>
  * Implementations are <b>not</b> thread-safe.
  */
-/*package*/ abstract class BlockAllocator implements Closeable
+public abstract class BlockAllocator implements Closeable
 {
-    /*package*/ BlockAllocator() {}
+    public BlockAllocator() {}
 
     /**
      * Allocates a {@link Block} instance to the caller.  The caller owns the block until {@link Block#close()} is

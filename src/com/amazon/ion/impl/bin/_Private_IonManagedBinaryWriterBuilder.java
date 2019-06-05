@@ -45,28 +45,6 @@ import java.util.List;
 @SuppressWarnings("deprecation")
 public final class _Private_IonManagedBinaryWriterBuilder
 {
-    public enum AllocatorMode
-    {
-        POOLED
-        {
-            @Override
-            BlockAllocatorProvider createAllocatorProvider()
-            {
-                return new PooledBlockAllocatorProvider();
-            }
-        },
-        BASIC
-        {
-            @Override
-            BlockAllocatorProvider createAllocatorProvider()
-            {
-                return BlockAllocatorProviders.basicProvider();
-            }
-        };
-
-        /*package*/ abstract BlockAllocatorProvider createAllocatorProvider();
-    }
-
     public static final int DEFAULT_BLOCK_SIZE = 32768;
 
     /*package*/ final    BlockAllocatorProvider provider;
@@ -79,7 +57,7 @@ public final class _Private_IonManagedBinaryWriterBuilder
     /*package*/ volatile SymbolTable            initialSymbolTable;
     /*package*/ volatile boolean                isFloatBinary32Enabled;
 
-    private _Private_IonManagedBinaryWriterBuilder(final BlockAllocatorProvider provider)
+    public _Private_IonManagedBinaryWriterBuilder(final BlockAllocatorProvider provider)
     {
         this.provider = provider;
         this.symbolsBlockSize = DEFAULT_BLOCK_SIZE;
@@ -270,11 +248,11 @@ public final class _Private_IonManagedBinaryWriterBuilder
     /**
      * Constructs a new builder.
      * <p>
-     * Builders generally bind to an allocation pool as defined by {@link AllocatorMode}, so applications should reuse
+     * Builders generally bind to an allocation pool as defined by {@link BlockAllocatorProvider}, so applications should reuse
      * them as much as possible.
      */
-    public static _Private_IonManagedBinaryWriterBuilder create(final AllocatorMode allocatorMode)
+    public static _Private_IonManagedBinaryWriterBuilder create(final BlockAllocatorProvider blockAllocatorProvider)
     {
-        return new _Private_IonManagedBinaryWriterBuilder(allocatorMode.createAllocatorProvider());
+        return new _Private_IonManagedBinaryWriterBuilder(blockAllocatorProvider);
     }
 }

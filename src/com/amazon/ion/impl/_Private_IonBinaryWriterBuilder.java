@@ -26,8 +26,8 @@ import com.amazon.ion.SubstituteSymbolTableException;
 import com.amazon.ion.SymbolTable;
 import com.amazon.ion.ValueFactory;
 import com.amazon.ion.impl.BlockedBuffer.BufferedOutputStream;
+import com.amazon.ion.impl.bin.PooledBlockAllocatorProvider;
 import com.amazon.ion.impl.bin._Private_IonManagedBinaryWriterBuilder;
-import com.amazon.ion.impl.bin._Private_IonManagedBinaryWriterBuilder.AllocatorMode;
 import com.amazon.ion.system.IonBinaryWriterBuilder;
 import com.amazon.ion.system.IonSystemBuilder;
 import java.io.IOException;
@@ -36,7 +36,6 @@ import java.io.OutputStream;
 /**
  * NOT FOR APPLICATION USE!
  */
-@SuppressWarnings("deprecation")
 public class _Private_IonBinaryWriterBuilder
     extends IonBinaryWriterBuilder
 {
@@ -52,7 +51,7 @@ public class _Private_IonBinaryWriterBuilder
     {
         myBinaryWriterBuilder =
             _Private_IonManagedBinaryWriterBuilder
-                .create(AllocatorMode.POOLED)
+                .create(new PooledBlockAllocatorProvider())
                 .withPaddedLengthPreallocation(0)
                 ;
     }

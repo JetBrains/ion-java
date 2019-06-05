@@ -29,7 +29,6 @@ import com.amazon.ion.SymbolTable;
 import com.amazon.ion.SymbolToken;
 import com.amazon.ion.SystemSymbols;
 import com.amazon.ion.impl.bin.IonManagedBinaryWriter.ImportedSymbolResolverMode;
-import com.amazon.ion.impl.bin._Private_IonManagedBinaryWriterBuilder.AllocatorMode;
 import com.amazon.ion.junit.Injected.Inject;
 
 import java.io.ByteArrayOutputStream;
@@ -41,10 +40,8 @@ import java.util.List;
 import java.util.Map;
 import org.junit.Test;
 
-@SuppressWarnings("deprecation")
 public class IonManagedBinaryWriterTest extends IonRawBinaryWriterTest
 {
-    @SuppressWarnings("unchecked")
     private static final List<List<String>> SHARED_SYMBOLS = unmodifiableList(asList(
         unmodifiableList(asList(
             "a",
@@ -136,7 +133,7 @@ public class IonManagedBinaryWriterTest extends IonRawBinaryWriterTest
         }
 
         final IonWriter writer = _Private_IonManagedBinaryWriterBuilder
-            .create(AllocatorMode.POOLED)
+            .create(new PooledBlockAllocatorProvider())
             .withImports(importedSymbolResolverMode, symbolTables)
             .withPreallocationMode(preallocationMode)
             .withFloatBinary32Enabled()

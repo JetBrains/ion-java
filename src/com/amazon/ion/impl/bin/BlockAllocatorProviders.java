@@ -18,7 +18,7 @@ package com.amazon.ion.impl.bin;
 /**
  * Utility implementations of {@link BlockAllocatorProvider}.
  */
-/*package*/ final class BlockAllocatorProviders
+public final class BlockAllocatorProviders
 {
     private BlockAllocatorProviders() {}
 
