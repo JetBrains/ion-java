@@ -55,6 +55,7 @@ public final class _Private_IonManagedBinaryWriterBuilder
     /*package*/ volatile IonCatalog             catalog;
     /*package*/ volatile WriteValueOptimization optimization;
     /*package*/ volatile SymbolTable            initialSymbolTable;
+    /*package*/ volatile boolean                isLocalSymbolTableAppendEnabled;
     /*package*/ volatile boolean                isFloatBinary32Enabled;
 
     public _Private_IonManagedBinaryWriterBuilder(final BlockAllocatorProvider provider)
@@ -66,6 +67,7 @@ public final class _Private_IonManagedBinaryWriterBuilder
         this.preallocationMode = PreallocationMode.PREALLOCATE_2;
         this.catalog = new SimpleCatalog();
         this.optimization = WriteValueOptimization.NONE;
+        this.isLocalSymbolTableAppendEnabled = false;
         this.isFloatBinary32Enabled = false;
     }
 
@@ -79,6 +81,7 @@ public final class _Private_IonManagedBinaryWriterBuilder
         this.catalog            = other.catalog;
         this.optimization       = other.optimization;
         this.initialSymbolTable = other.initialSymbolTable;
+        this.isLocalSymbolTableAppendEnabled = other.isLocalSymbolTableAppendEnabled;
         this.isFloatBinary32Enabled = other.isFloatBinary32Enabled;
     }
 
@@ -168,6 +171,18 @@ public final class _Private_IonManagedBinaryWriterBuilder
     public _Private_IonManagedBinaryWriterBuilder withStreamCopyOptimization(boolean optimized)
     {
         this.optimization = optimized ? WriteValueOptimization.COPY_OPTIMIZED : WriteValueOptimization.NONE;
+        return this;
+    }
+
+    public _Private_IonManagedBinaryWriterBuilder withLocalSymbolTableAppendEnabled()
+    {
+        isLocalSymbolTableAppendEnabled = true;
+        return this;
+    }
+
+    public _Private_IonManagedBinaryWriterBuilder withLocalSymbolTableAppendDisabled()
+    {
+        isLocalSymbolTableAppendEnabled = false;
         return this;
     }
 

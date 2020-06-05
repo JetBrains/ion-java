@@ -34,13 +34,15 @@ public final class PooledBlockAllocatorProvider extends BlockAllocatorProvider
      */
     private static final class PooledBlockAllocator extends BlockAllocator
     {
-        private final int blockSize;
+        private final int blockSize, blockLimit;
         private final ConcurrentLinkedQueue<Block> freeBlocks;
+        static final int FREE_CAPACITY = 1024 * 1024 * 64; // 64MB
 
         public PooledBlockAllocator(final int blockSize)
         {
             this.blockSize = blockSize;
             this.freeBlocks = new ConcurrentLinkedQueue<Block>();
+            this.blockLimit = FREE_CAPACITY / blockSize;
         }
 
         @Override
@@ -54,8 +56,10 @@ public final class PooledBlockAllocatorProvider extends BlockAllocatorProvider
                     @Override
                     public void close()
                     {
-                        reset();
-                        freeBlocks.add(this);
+                        if (freeBlocks.size() < blockLimit) {
+                            reset();
+                            freeBlocks.add(this);
+                        }
                     }
                 };
             }
